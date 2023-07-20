@@ -3,7 +3,29 @@
   /* width: 100%; */
   display: flex;
   justify-content: center;
-  background-image: url("../../background1.jpg");
+  background-image: url("../../background3.jpg");
   background-position: center;
   background-size: cover;
+}
+
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  text-align: center;
+
+  /* works same */
+  /* width: 100%;
+  text-align: center; */
+}
+
+.subtitle {
+  font-size: 25px;
+  padding: 10px;
+}
+
+.title {
+  font-size: 55px;
 }
