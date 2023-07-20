@@ -5,8 +5,11 @@ const app = express();
 const dotenv = require("dotenv");
 const notes = require("./data/notes");
 // import notes from "./data/notes.js";
+const connectDB = require("./config/db");
 
 dotenv.config();
+connectDB();
+
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
