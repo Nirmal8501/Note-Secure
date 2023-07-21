@@ -7,8 +7,12 @@ const notes = require("./data/notes");
 // import notes from "./data/notes.js";
 const connectDB = require("./config/db");
 
+const userRoutes = require("./routes/userRoutes");
+const { notFound, errorHandler } = require("./middleware/errorMW");
+
 dotenv.config();
 connectDB();
+app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
@@ -31,5 +35,13 @@ app.get("/api/notes/:id", (req, res) => {
 
   res.json(note);
 });
+
+// ///////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////
+
+app.use("/api/users", userRoutes);
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, console.log(`Listeing on port ${PORT}`));
