@@ -4,7 +4,7 @@ import "./Mainscreen.css";
 
 const Mainscreen = ({ title, children }) => {
   return (
-    <div classname="mainback">
+    <div className="mainback">
       <Container>
         <Row>
           <div className="page">

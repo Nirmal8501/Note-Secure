@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler"); //Handles async errors
 const User = require("../models/userModel");
+const generateToken = require("../utils/jwt");
 // const mongoose = require("mongoose");
 
 // POST /api/users/login
@@ -56,6 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       pic: user.pic,
+      token: generateToken(user._id),
     });
     // res.send
   } else {
