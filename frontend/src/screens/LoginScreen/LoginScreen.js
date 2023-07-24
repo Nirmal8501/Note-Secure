@@ -1,8 +1,8 @@
 import MainScreen from "../../components/Mainscreen";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 // import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../../components/ErrorMessage";
 // import { login } from "../../actions/userActions";
@@ -11,9 +11,19 @@ import "./LoginScreen.css";
 import axios from "axios";
 
 const LoginScreen = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      navigate("/mynotes");
+    }
+  }, [navigate]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+
   // const [loading, setLoading] = useState(false);
 
   const submitHandler = async (e) => {
@@ -36,6 +46,7 @@ const LoginScreen = () => {
       );
       console.log(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
+      navigate("/mynotes");
       // setLoading(false);
     } catch (error) {
       setError(error.response.data.message);
@@ -68,7 +79,11 @@ const LoginScreen = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="my-4">
+          <Button
+            variant="primary"
+            type="submit"
+            className="my-4 btn btn-outline-dark"
+          >
             Submit
           </Button>
         </Form>

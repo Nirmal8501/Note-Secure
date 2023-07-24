@@ -2,7 +2,7 @@ import Mainscreen from "../../components/Mainscreen";
 import "./RegisterScreen.css";
 import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
@@ -20,6 +20,7 @@ const RegisterScreen = () => {
   const [picMessage, setPicMessage] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const postDetails = (pics) => {
     if (
@@ -84,6 +85,7 @@ const RegisterScreen = () => {
         setLoading(false);
 
         localStorage.setItem("userInfo", JSON.stringify(data));
+        navigate("/mynotes");
       } catch (error) {
         setError(error.response.data.message);
         setLoading(false);
