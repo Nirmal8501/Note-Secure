@@ -8,6 +8,7 @@ import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNotes from "./MyNotes/MyNotes";
 import CreateNote from "./screens/CreateNote/CreateNote";
+import SingleNote from "./screens/CreateNote/SingleNote";
 // function App() {
 //   return <div className="App">Hello World</div>;
 // }
@@ -21,6 +22,7 @@ const App = () => (
         <Route path="/register" Component={RegisterScreen} exact />
         <Route path="/mynotes/createnote" Component={CreateNote} exact />
         <Route path="/mynotes" Component={() => <MyNotes />} exact />
+        <Route path="/note/:id" Component={SingleNote} exact />
       </Routes>
     </main>
     {/* <LandingPage /> */}
