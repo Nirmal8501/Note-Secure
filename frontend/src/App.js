@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNotes from "./MyNotes/MyNotes";
 import CreateNote from "./screens/CreateNote/CreateNote";
 import SingleNote from "./screens/CreateNote/SingleNote";
+import UserProfile from "./screens/UserProfile/UserProfile";
 // function App() {
 //   return <div className="App">Hello World</div>;
 // }
@@ -20,6 +21,7 @@ const App = () => (
         <Route path="/" Component={LandingPage} exact />
         <Route path="/login" Component={LoginScreen} exact />
         <Route path="/register" Component={RegisterScreen} exact />
+        <Route path="/profile" Component={UserProfile} exact />
         <Route path="/mynotes/createnote" Component={CreateNote} exact />
         <Route path="/mynotes" Component={() => <MyNotes />} exact />
         <Route path="/note/:id" Component={SingleNote} exact />

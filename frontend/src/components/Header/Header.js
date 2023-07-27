@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();
-
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   return (
     <Navbar expand="lg" className="bg-dark" data-bs-theme="dark">
       {/* // <Navbar bg="primary" expand="lg" variant="dark"> */}
@@ -42,7 +42,7 @@ function Header() {
             </Nav.Link>
             {/* <Nav.Link href="#action2">Link</Nav.Link> */}
             <NavDropdown title="User" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
               {/* <NavDropdown.Item href="#action4">
                 Another action
               </NavDropdown.Item> */}

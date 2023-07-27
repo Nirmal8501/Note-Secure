@@ -12,43 +12,75 @@ function SingleNote() {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-  const fetchNoteData = async () => {
-    // e.preventDefault();
-    try {
-      setError(null);
-      setLoading(true);
+  // const fetchNoteData = async () => {
+  //   // e.preventDefault();
+  //   try {
+  //     setError(null);
+  //     // setLoading(true);
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${userInfo.token}`,
+  //       },
+  //     };
 
-      const { data } = await axios.get(`/api/notes/${id}`, config);
+  //     const { data } = await axios.get(`/api/notes/${id}`, config);
 
-      setLoading(false);
-      setTitle(data.title);
-      setContent(data.content);
-      setCategory(data.category);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error fetching note: ", error);
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      setError(message);
-    }
-  };
+  //     // setLoading(false);
+  //     setTitle(data.title);
+  //     setContent(data.content);
+  //     setCategory(data.category);
+  //   } catch (error) {
+  //     // setLoading(false);
+  //     console.error("Error fetching note: ", error);
+  //     const message =
+  //       error.response && error.response.data.message
+  //         ? error.response.data.message
+  //         : error.message;
+  //     setError(message);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchNoteData();
+  // }, [fetchNoteData, id]);
 
   useEffect(() => {
+    const fetchNoteData = async () => {
+      try {
+        setError(null);
+        // setLoading(true);
+
+        const config = {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+
+        const { data } = await axios.get(`/api/notes/${id}`, config);
+
+        // setLoading(false);
+        setTitle(data.title);
+        setContent(data.content);
+        setCategory(data.category);
+      } catch (error) {
+        // setLoading(false);
+        console.error("Error fetching note: ", error);
+        const message =
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        setError(message);
+      }
+    };
+
     fetchNoteData();
-  });
+  }, [id, userInfo.token]);
 
   const resetHandler = () => {
     setTitle("");
@@ -60,7 +92,7 @@ function SingleNote() {
     // e.preventDefault();
     try {
       setError(null);
-      setLoading(true);
+      // setLoading(true);
 
       const updatedNote = {
         title,
@@ -77,10 +109,10 @@ function SingleNote() {
 
       await axios.put(`/api/notes/${id}`, updatedNote, config);
 
-      setLoading(false);
+      // setLoading(false);
       navigate("/mynotes");
     } catch (error) {
-      setLoading(false);
+      // setLoading(false);
       console.error("Error updating note: ", error);
       const message =
         error.response && error.response.data.message
@@ -135,7 +167,7 @@ function SingleNote() {
                 onChange={(e) => setCategory(e.target.value)}
               />
             </Form.Group>
-            {loading && <Loading size={50} />}
+            {/* {loading && <Loading size={50} />} */}
             <Button
               type="submit"
               variant="primary"
